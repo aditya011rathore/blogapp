@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Home</title>
+</head>
+<body>
+    <center>
+        <h1>Post</h1>
+        {% for message in messages %}
+        <span>{{message}}</span>
+        {% endfor %}
+        <form action="/home/" method="POST">
+            <table>
+                <tr>
+                    <td>Title</td>
+                    <td>
+                        <input type="text" name="title">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Body</td>
+                    <td>
+                        <textarea type="text" name="body"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" name="submit" value="Post">
+                    </td>
+                    <td>
+                        <a href="/logout/">Logout</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Last Login :
+                    </td>
+                    <td>
+                        {{request.user.last_login}}
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <table style="padding: 20px;">
+            {% for x in posts %}
+            <tr><td><h2>{{x.title}}</h2></td></tr>
+            <tr><td><span>{{x.created_at}}</span></td></tr>
+            <tr><td><p style="height: 200px; overflow-y: auto;">{{x.body}}</p></td></tr>
+            {% endfor %}
+        </table>        
+    </center>
+</body>
+</html>
